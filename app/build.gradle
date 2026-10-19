@@ -1,0 +1,35 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    namespace 'io.github.duorail.haptic'
+    compileSdk 35
+    defaultConfig {
+        applicationId 'io.github.duorail.haptic'
+        minSdk 29
+        targetSdk 35
+        versionCode 2
+        versionName '0.2.0-test'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packaging {
+        resources {
+            excludes += ['META-INF/LICENSE', 'META-INF/NOTICE']
+        }
+    }
+}
+dependencies {
+    // 编译时接口，APK 不包含这些 Xposed 类；真实实现由 LSPosed 在目标进程提供。
+    compileOnly project(':xposed-stubs')
+}
